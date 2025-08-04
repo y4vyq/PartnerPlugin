@@ -1,0 +1,27 @@
+name: PartnerPlugin
+main: com.y4vyq.partnerplugin.PartnerPlugin
+version: 1.0
+api-version: 1.20
+description: 一个可以召唤伙伴的插件
+author: y4vyq
+
+commands:
+  partner:
+    description: 召唤或管理你的伙伴
+    usage: /partner [help|reload|hide|show]
+    aliases: [pt, buddy]
+    permission: partner.use
+
+permissions:
+  partner.use:
+    description: 允许使用伙伴插件基础命令
+    default: true
+  partner.reload:
+    description: 允许重载插件配置
+    default: op
+  partner.admin:
+    description: 所有伙伴插件权限
+    default: op
+    children:
+      partner.use: true
+      partner.reload: true
