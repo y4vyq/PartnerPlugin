@@ -1,0 +1,116 @@
+# 伙伴插件配置文件
+
+# ================ 基础设置 ================
+settings:
+  # 伙伴默认存在时间(秒)
+  default-duration: 300
+  # 传送冷却时间(秒)
+  teleport-cooldown: 3
+  # 自动保存间隔(分钟)
+  auto-save-interval: 5
+
+# ================ 伙伴实体设置 ================
+partner:
+  # 实体类型(必须是可以驯服的生物)
+  entity-type: FOX
+  # 显示名称(支持颜色代码)
+  display-name: "&6&l我的伙伴 &7[Lv.1]"
+  # 名称显示设置
+  nameplate:
+    visible: true
+    always-visible: false  # 即使潜行也显示
+    glow: false           # 名称发光效果
+  
+  # 实体属性
+  attributes:
+    health: 20.0
+    ai: true              # 是否启用AI
+    silent: false         # 是否静音
+    glowing: false        # 全身发光效果
+    gravity: true         # 是否受重力影响
+    invulnerable: true    # 是否无敌
+    age: adult            # adult(成年)/baby(幼年)
+    variant: RED          # 变种类型(不同实体有不同变种)
+  
+  # 特殊行为设置
+  behaviors:
+    follow-owner: true    # 是否跟随主人
+    teleport-with-owner: true  # 是否随玩家传送
+    avoid-water: true     # 是否避开水域
+    sit-on-sneak: true    # 潜行时坐下
+
+# ================ 视觉效果设置 ================
+effects:
+  # 召唤效果
+  summon:
+    # 粒子效果类型
+    particle: FLAME
+    # 粒子数量
+    count: 100
+    # 效果半径
+    radius: 1.5
+    # 持续时间(tick)
+    duration: 20
+    # 形状: circle(圆形)/spiral(螺旋)/wave(波浪)/custom(自定义)
+    shape: circle
+    # 颜色(RGB)
+    color:
+      r: 255
+      g: 100
+      b: 0
+    
+    # 音效设置
+    sound:
+      type: ENTITY_FOX_AMBIENT
+      volume: 1.0
+      pitch: 1.0
+  
+  # 消失效果
+  despawn:
+    particle: CLOUD
+    count: 30
+    sound:
+      type: ENTITY_FOX_SLEEP
+      volume: 0.8
+      pitch: 1.2
+
+# ================ 消息配置 ================
+messages:
+  # 通用前缀
+  prefix: "&b[伙伴]&f "
+  
+  # 交互消息
+  summon: "&a你的伙伴已出现！持续 &e{duration}秒 &a后消失"
+  hide: "&a伙伴已隐藏！输入 &e/partner show &a重新召唤"
+  show: "&a伙伴已重新出现！"
+  death: "&c你的伙伴不幸死亡了！"
+  cooldown: "&c你的伙伴正在冷却中，请稍后再试！"
+  
+  # 错误消息
+  errors:
+    no-permission: "&c你没有权限执行此命令！"
+    invalid-command: "&c未知命令！输入 &e/partner help &c查看帮助"
+    in-water: "&c在水中不能召唤伙伴！"
+    in-vehicle: "&c在坐骑或载具上不能召唤伙伴！"
+    spectator: "&c旁观模式下不能召唤伙伴！"
+
+# ================ 权限设置 ================
+permissions:
+  # 基础权限
+  base: partner.use
+  # 管理员权限
+  admin: partner.admin
+  # 特殊权限
+  special:
+    multiple: partner.multiple  # 允许拥有多个伙伴
+    bypass-cooldown: partner.bypass.cooldown  # 绕过冷却时间
+
+# ================ 高级设置 ================
+advanced:
+  # 粒子效果性能优化
+  particle-optimization:
+    max-particles-per-tick: 20  # 每tick最大粒子数
+    disable-in-far-chunks: true  # 在远处区块禁用粒子
+  
+  # 调试模式
+  debug: false
